@@ -1,6 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from . import models, schemas, database
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+from starlette.requests import Request
+
 
 app = FastAPI(
     title="Library Management API",  # API title
@@ -8,6 +13,14 @@ app = FastAPI(
     version="1.0.0",  # API version 
     
 )
+
+
+# Configuración de la carpeta de plantillas
+templates = Jinja2Templates(directory="app/templates")  # Asegúrate de que la ruta esté correcta
+
+@app.get("/", response_class=HTMLResponse)
+async def get_home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 # Crear las tablas en la base de datos
 models.Base.metadata.create_all(bind=database.engine)
