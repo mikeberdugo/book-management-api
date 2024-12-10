@@ -93,7 +93,28 @@ biblioteca_api/
 └── README.md
 ```
 
+
+
 ## Evaluación
+
+# Respuestas a Preguntas Adicionales
+
+## 1. ¿Cómo manejarías la autenticación y autorización en la API?
+
+Para manejar la autenticación y autorización en la API, implementaría el uso de JWT (JSON Web Tokens). Utilizando FastAPI, aprovecharía las dependencias de seguridad para proteger los endpoints sensibles. Los usuarios se autenticarían mediante un login que generaría un token JWT, el cual sería utilizado para autenticar las solicitudes en los endpoints protegidos.
+
+## 2. ¿Qué estrategias utilizarías para escalar la aplicación?
+
+Para escalar la aplicación, utilizaría contenedores Docker y Kubernetes para gestionar la distribución de la carga entre múltiples instancias de la aplicación. Además, implementaría un sistema de bases de datos en clúster para mejorar la disponibilidad y el rendimiento. Para optimizar el rendimiento, consideraría el uso de cachés como Redis.
+
+## 3. ¿Cómo implementaría la paginación en los endpoints que devuelven listas de libros?
+
+Implementaría la paginación en los endpoints de búsqueda de libros utilizando los parámetros de consulta `limit` y `offset`, permitiendo al usuario especificar cuántos resultados devolver y desde qué punto empezar. Esto reduciría la carga de las respuestas y mejoraría la eficiencia de las consultas.
+
+## 4. ¿Cómo asegurarías la seguridad de la aplicación (protección contra inyecciones SQL, XSS, etc.)?
+
+Para proteger la aplicación contra inyecciones SQL, utilizaría consultas preparadas a través de SQLAlchemy, lo cual evita la ejecución de código malicioso. Para proteger contra XSS, FastAPI maneja automáticamente la sanitización de datos de entrada y salida, pero también podría utilizar funciones como `html.escape` para escapar cualquier contenido malicioso en las respuestas.
+
 
 ### Diseño de la API
 - **Endpoints RESTful:** Implementación de operaciones GET, POST, PUT y DELETE.
